@@ -21,6 +21,13 @@ export const getSmurfs = () => dispatch => {
         })
 }
 
+export const postSmurf = (smurf) => dispatch => {
+    axios.post("http://localhost:3333/smurfs", smurf)
+        .then( resp => {
+            console.log(resp);
+            dispatch(addSmurf(smurf));
+    })
+}
 export const fetchStart = () => {
     return ({type:FETCH_START});
 }
@@ -31,6 +38,14 @@ export const fetchSuccess = (resp) => {
 
 export const fetchFail = (error) => {
     return ({type:FETCH_FAIL, payload:error});
+}
+
+export const addSmurf = (resp) => {
+    return ({type:ADD_SMURF, payload: resp});
+}
+
+export const addError = (error) => {
+    return ({type:ADD_ERROR, payload: error});
 }
 //Task List:
 //1. Add a thunk action called fetchSmurfs that triggers a loading status display in our application, performs an axios call to retreive smurfs from our server, saves the result of that call to our state and shows an error if one is made.

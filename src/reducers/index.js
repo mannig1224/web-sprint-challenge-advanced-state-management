@@ -32,11 +32,13 @@ const reducer = (state = initialState, action)=>{
             }
         case ADD_SMURF:
             return {
-                state
+                ...state,
+                smurfData: [...state.smurfData, action.payload]
             }
         case ADD_ERROR:
             return {
-                state
+                ...state,
+                error: action.payload
             }
         default:
             return state
